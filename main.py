@@ -1,5 +1,5 @@
-import db
-import embeddings
+import lib.db as db
+import lib.embeddings as embeddings
 import math
 
 def cosine_similarity(vec1, vec2):

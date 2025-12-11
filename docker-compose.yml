@@ -1,4 +1,15 @@
 services:
+  app:
+    build: .
+    container_name: app
+    stdin_open: true
+    tty: true
+    depends_on:
+      - ollama
+      - mongodb
+    environment:
+      EMBEDDING_MODEL: nomic-embed-text
+
   ollama:
     image: ollama/ollama:latest
     container_name: ollama
@@ -6,10 +17,6 @@ services:
       - 11434:11434
     volumes:
       - ollama_data:/data
-      - ./entrypoint.sh:/entrypoint.sh
-    entrypoint: [ "/usr/bin/bash", "/entrypoint.sh" ]
-    environment:
-      EMBEDDING_MODEL: mxbai-embed-large
 
   mongodb:
     image: mongo:latest
@@ -21,6 +28,7 @@ services:
       - 27017:27017
     volumes:
       - mongodb_data_container:/data/db
+      - ./mongod.conf:/etc/mongod.conf:ro
 
 volumes:
   mongodb_data_container:

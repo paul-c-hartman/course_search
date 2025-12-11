@@ -1,0 +1,17 @@
+#!/bin/bash
+
+set -eo pipefail
+
+# Check if we're running in the container
+if [ -f /.dockerenv ]; then
+    # Prepare environment
+    python lib/clear_data.py
+    python lib/store_data.py
+
+    # Launch the program
+    python main.py
+else
+    # Recursion--run this script inside
+    # the container
+    docker compose run --remove-orphans app ./start
+fi

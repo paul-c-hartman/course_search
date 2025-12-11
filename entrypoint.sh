@@ -1,20 +1,15 @@
-# Source - https://stackoverflow.com/a
-# Posted by datawookie
-# Retrieved 2025-12-10, License - CC BY-SA 4.0
-
 #!/bin/bash
 
-# Start Ollama in the background.
-/bin/ollama serve &
-# Record Process ID.
-pid=$!
+cleanup_and_exit() {
+    echo "Exiting cleanly"
+    exit 0
+}
 
-# Pause for Ollama to start.
-sleep 5
+trap cleanup_and_exit SIGINT SIGTERM SIGHUP
 
-echo "🔴 Retrieve $EMBEDDING_MODEL model..."
-ollama pull $EMBEDDING_MODEL
-echo "🟢 Done!"
+set -eo pipefail
 
-# Wait for Ollama process to finish.
-wait $pid
+# Just run until terminated
+while true; do
+    sleep 1
+done

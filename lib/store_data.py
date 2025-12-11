@@ -1,6 +1,6 @@
 import json
-import embeddings
-import db
+import embeddings as embeddings
+import db as db
 
 # Connect to MongoDB
 database = db.get_db()
