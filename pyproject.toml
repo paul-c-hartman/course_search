@@ -1,0 +1,10 @@
+[project]
+name = "course-search"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "ollama>=0.6.1",
+    "pymongo>=4.15.5",
+]
