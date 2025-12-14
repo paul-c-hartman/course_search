@@ -22,6 +22,7 @@ def main():
     print(f"Loaded {len(all_embeddings)} embeddings.")
     
     # Simple REPL to similarity-search the embeddings
+    print("== Course Search ==")
     while True:
         query = input("Enter your query (or 'q' to quit): ")
         if query.lower() == 'q':
@@ -38,7 +39,7 @@ def main():
         print(f"Found {len(similarities)} results:")
         for similarity, embedding in similarities[:3]:  # Show top 3 results
             course = course_collection.find_one({'code': embedding['course_code']})
-            print(f"Similarity: {similarity:.4f}, Course: {embedding['course_code']} - {course['title']}")
+            print(f"Similarity: {similarity*100:.2f}%, Course: {embedding['course_code']} - {course['title']}")
 
 if __name__ == "__main__":
     main()
