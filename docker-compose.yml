@@ -8,7 +8,7 @@ services:
       - ollama
       - mongodb
     environment:
-      EMBEDDING_MODEL: nomic-embed-text
+      EMBEDDING_MODEL: mxbai-embed-large
 
   ollama:
     image: ollama/ollama:latest
